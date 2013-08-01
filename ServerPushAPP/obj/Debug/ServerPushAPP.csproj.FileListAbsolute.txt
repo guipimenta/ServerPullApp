@@ -1,0 +1,6 @@
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\bin\Debug\ServerPushAPP.exe.config
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\bin\Debug\ServerPushAPP.exe
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\bin\Debug\ServerPushAPP.pdb
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\obj\Debug\ServerPushAPP.csprojResolveAssemblyReference.cache
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\obj\Debug\ServerPushAPP.exe
+C:\ProjetoPCS\ServerPushAPP\ServerPushAPP\obj\Debug\ServerPushAPP.pdb
