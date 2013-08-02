@@ -24,7 +24,7 @@ namespace ServerPushAPP
             while (true)
             {
                 String horarioAtual = DateTime.Now.ToString("HH:mm");
-                horarioAtual = "12:00";
+                //horarioAtual = "12:00";
                 for (int i = 0; i < DBTimers.Count; i++)
                 {
                     DBTimer dbTimer = DBTimers.ElementAt(i);
@@ -35,6 +35,9 @@ namespace ServerPushAPP
                         //Faz tratamento
                         //Sincronizacao com o banco de dados
                         this.startSync();
+
+                        //Evita sincronização duplicada
+                        while (horarioAtual == DateTime.Now.ToString("HH:mm")) { }
                     }
                 }
             }
@@ -44,8 +47,9 @@ namespace ServerPushAPP
         public void startSync()
         {
 
-            WebInterface.doGet("http://localhost:7800/dumyserver/json.txt.txt");
-                    request = false;
+            String response = WebInterface.doGet("http://localhost:7800/dumyserver/json.txt.txt");
+            Sync.doSync(response);
+
         }
 
     }

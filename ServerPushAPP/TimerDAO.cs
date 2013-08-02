@@ -11,23 +11,32 @@ namespace ServerPushAPP
     {
         private SqlConnection cnn;
         private List<DBTimer> timerList = new List<DBTimer>();
+        private bool isConnected;
 
-        public TimerDAO()
+        public void conectDatabase(String username, String password)
         {
             string connetionString = null;
             
-            connetionString = "Data Source=localhost;Initial Catalog=usperiodico;User ID=usperiodico;Password=abc123123";
+            connetionString = "Data Source=localhost;Initial Catalog=usperiodico;User ID=" + username+";Password=" + password;
             cnn = new SqlConnection(connetionString);
 
             try
             {
                 cnn.Open();
                 Console.WriteLine("Conectado");
+                isConnected = true;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Não foi possível conectar ao banco de dados...");
+                isConnected = false;
+
             }
+        }
+
+        public void clearTimers()
+        {
+            timerList.Clear();
         }
 
         public void readTimers()
@@ -65,6 +74,11 @@ namespace ServerPushAPP
         public List<DBTimer> getTimerList()
         {
             return timerList;
+        }
+
+        public bool connectionStatus()
+        {
+            return isConnected;
         }
     }
 }
