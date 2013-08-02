@@ -11,8 +11,9 @@ namespace ServerPushAPP
 {
     class Program
     {
-        static Thread server;
+        static Thread server, updateServiceThread;
         static TimerDAO timerDAO;
+        static UpdateService updateService;
         static void Main(string[] args)
         {
 
@@ -31,6 +32,11 @@ namespace ServerPushAPP
             server.Start();
 
             Console.WriteLine("Servidor inicializado com sucesso!");
+
+            Console.WriteLine("\nInicializando serviço de update...");
+            updateService = new UpdateService();
+            updateServiceThread = new Thread(updateService.startService);
+            updateServiceThread.Start();
 
             //Console
             //Possivelmente refatorar e colocar em uma classe
@@ -71,7 +77,7 @@ namespace ServerPushAPP
             timerDAO.clearTimers();
             timerDAO.readTimers();
 
-            Console.WriteLine("Servidor atualizado com sucesso!");
+            Console.WriteLine("Servidor atualizado com sucesso!\n#");
             server.Resume();
             
 

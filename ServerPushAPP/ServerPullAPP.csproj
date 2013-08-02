@@ -50,6 +50,7 @@
     <Compile Include="Timer.cs" />
     <Compile Include="TimerDAO.cs" />
     <Compile Include="TimerServer.cs" />
+    <Compile Include="UpdateService.cs" />
     <Compile Include="Utilitarios.cs" />
     <Compile Include="WebInterface.cs" />
   </ItemGroup>
