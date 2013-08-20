@@ -24,9 +24,12 @@ namespace ServerPushAPP
 
         public void readTimers()
         {
+            
             string query = "SELECT * FROM Timer";
             SqlDataReader reader = null;
-
+            cnn.Close();
+            DBConection.dummyConnection();
+            cnn = DBConection.cnn;
             SqlCommand cmd = new SqlCommand(query, cnn);
             
             reader = cmd.ExecuteReader();
@@ -60,6 +63,7 @@ namespace ServerPushAPP
         {
             return timerList;
         }
+
 
       
     }

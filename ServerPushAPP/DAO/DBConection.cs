@@ -11,11 +11,14 @@ namespace ServerPushAPP.DAO
     {
         public static bool isConnected;
         public static SqlConnection cnn;
+        static string username;
+        static string password;
 
         public static void conectDatabase(String username, String password)
         {
             string connetionString = null;
-
+            DBConection.username = username;
+            DBConection.password = password;
             connetionString = "Data Source=localhost;Initial Catalog=usperiodico;User ID=" + username + ";Password=" + password;
             cnn = new SqlConnection(connetionString);
 
@@ -31,6 +34,11 @@ namespace ServerPushAPP.DAO
                 isConnected = false;
 
             }
+        }
+
+        public static void dummyConnection()
+        {
+            DBConection.conectDatabase(DBConection.username, DBConection.password);
         }
 
         public bool connectionStatus()
