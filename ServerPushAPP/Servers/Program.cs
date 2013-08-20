@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Threading;
+using ServerPushAPP.DAO;
 
 
 namespace ServerPushAPP
@@ -22,6 +23,7 @@ namespace ServerPushAPP
 
             //Le timers e inicializa o servidor
             Console.WriteLine("\nCarregando timers disponíveis...");
+            timerDAO = new TimerDAO();
             timerDAO.readTimers();
             Console.WriteLine("Número de timers carregados: " + timerDAO.getNumTimers());
 
@@ -58,13 +60,26 @@ namespace ServerPushAPP
                     
                 } else if(command.Equals("update")){
                     updateServer();
-                } else {
+                }
+                else if (command.Equals("force sync"))
+                {
+                    forceSync();
+                }
+                else
+                {
                     Console.WriteLine("Comando inválido");
-                    }
+                }
                 
 
             }
            
+        }
+
+        public static void forceSync()
+        {
+            Console.WriteLine("\n\nForçando sincronização...");
+            String response = WebInterface.doGet("http://localhost:7800/dumyserver/example.json");
+            Sync.doSync(response);
         }
 
         public static void updateServer()
@@ -87,7 +102,7 @@ namespace ServerPushAPP
         //TODO: refatorar e colocar em outra classe
         public static void doLogin()
         {
-            timerDAO = new TimerDAO();
+
             do
             {
                 Console.Clear();
@@ -100,10 +115,11 @@ namespace ServerPushAPP
                 String password = Utilitarios.getPassword();
 
                 Console.WriteLine("\n\nInicializando conexão com SQL Server....");
-                timerDAO.conectDatabase(username, password);
+                
+                DBConection.conectDatabase(username, password);
 
             }
-            while (!timerDAO.connectionStatus());
+            while (!DBConection.isConnected);
             
 
         }

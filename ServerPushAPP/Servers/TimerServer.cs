@@ -47,7 +47,7 @@ namespace ServerPushAPP
         public void startSync()
         {
 
-            String response = WebInterface.doGet("http://localhost:7800/dumyserver/json.txt.txt");
+            String response = WebInterface.doGet("http://localhost:7800/dumyserver/example.json");
             Sync.doSync(response);
 
         }

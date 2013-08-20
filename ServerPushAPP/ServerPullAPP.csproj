@@ -44,15 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DAO\DBConection.cs" />
+    <Compile Include="DAO\PalestraDAO.cs" />
+    <Compile Include="Sincronização\JsonResponse.cs" />
+    <Compile Include="Modelos\Palestra.cs" />
+    <Compile Include="Servers\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sync.cs" />
-    <Compile Include="Timer.cs" />
-    <Compile Include="TimerDAO.cs" />
-    <Compile Include="TimerServer.cs" />
-    <Compile Include="UpdateService.cs" />
-    <Compile Include="Utilitarios.cs" />
-    <Compile Include="WebInterface.cs" />
+    <Compile Include="Sincronização\Sync.cs" />
+    <Compile Include="Servers\Timer.cs" />
+    <Compile Include="DAO\TimerDAO.cs" />
+    <Compile Include="Servers\TimerServer.cs" />
+    <Compile Include="Servers\UpdateService.cs" />
+    <Compile Include="Sincronização\Utilitarios.cs" />
+    <Compile Include="Web\WebInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

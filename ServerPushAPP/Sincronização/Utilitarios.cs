@@ -25,8 +25,12 @@ namespace ServerPushAPP
                 }
                 else
                 {
-                    pass = pass.Remove(pass.Length - 1);
-                    Console.Write("\b \b");
+                    if (pass.Length > 0)
+                    {
+                        pass = pass.Remove(pass.Length - 1);
+                        Console.Write("\b \b");
+                    }
+                    
                 }
             }
             // Stops Receving Keys Once Enter is Pressed

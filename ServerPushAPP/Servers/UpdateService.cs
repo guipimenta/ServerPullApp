@@ -18,7 +18,7 @@ namespace ServerPushAPP
             _timer = new Timer(timeout);
             _timer.Elapsed += new ElapsedEventHandler(timerTimeOut);
             _timer.Enabled = true; // Enable it
-            Console.WriteLine("\nServiço de update inicializado com sucesso!");
+            Console.WriteLine("\nServiço de update inicializado com sucesso! ");
         }
 
         public  void timerTimeOut(object sender, ElapsedEventArgs e)

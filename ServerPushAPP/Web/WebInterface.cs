@@ -36,9 +36,9 @@ namespace ServerPushAPP
 
 
             //Debug only
-            Console.WriteLine("\nResposta do servidor:");
+            /*Console.WriteLine("\nResposta do servidor:");
             Console.WriteLine(response);
-            for (int i = 0; i < 100000000; i++) { }
+            for (int i = 0; i < 100000000; i++) { }*/
 
             return response;
         }

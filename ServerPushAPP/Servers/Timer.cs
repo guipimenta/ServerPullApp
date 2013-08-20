@@ -8,6 +8,7 @@ namespace ServerPushAPP
 {
     class DBTimer
     {
+        public int id { get; set; }
         public String horario { get; set; }
         public String frequencia { get; set; }
     }

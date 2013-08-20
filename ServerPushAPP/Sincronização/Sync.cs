@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft;
+using ServerPushAPP.DAO;
 
 namespace ServerPushAPP
 {
@@ -12,8 +13,9 @@ namespace ServerPushAPP
     {
         public static void doSync(String response)
         {
-           //JObject jo = new JObject(response);
-        
+            Palestra palestra = JsonResponse.parsePalestra(response);
+            PalestraDAO palestraDAO = new PalestraDAO();
+            palestraDAO.inserePalestra(palestra);
         }
 
     }

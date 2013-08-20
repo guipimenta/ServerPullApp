@@ -4,34 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
-
+using ServerPushAPP.DAO;
 namespace ServerPushAPP
 {
     class TimerDAO
     {
         private SqlConnection cnn;
         private List<DBTimer> timerList = new List<DBTimer>();
-        private bool isConnected;
 
-        public void conectDatabase(String username, String password)
+        public TimerDAO()
         {
-            string connetionString = null;
-            
-            connetionString = "Data Source=localhost;Initial Catalog=usperiodico;User ID=" + username+";Password=" + password;
-            cnn = new SqlConnection(connetionString);
-
-            try
-            {
-                cnn.Open();
-                Console.WriteLine("Conectado");
-                isConnected = true;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Não foi possível conectar ao banco de dados...");
-                isConnected = false;
-
-            }
+            cnn = DBConection.cnn;
         }
 
         public void clearTimers()
@@ -45,13 +28,15 @@ namespace ServerPushAPP
             SqlDataReader reader = null;
 
             SqlCommand cmd = new SqlCommand(query, cnn);
+            
             reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                 DBTimer timer = new DBTimer();
-                timer.horario =  reader[0].ToString();
-                timer.frequencia = reader[1].ToString();
+                timer.id = int.Parse( reader[0].ToString());
+                timer.horario =  reader[1].ToString();
+                timer.frequencia = reader[2].ToString();
                 timerList.Add(timer);
             }
             
@@ -76,9 +61,6 @@ namespace ServerPushAPP
             return timerList;
         }
 
-        public bool connectionStatus()
-        {
-            return isConnected;
-        }
+      
     }
 }
