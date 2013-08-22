@@ -12,29 +12,45 @@ namespace ServerPushAPP.DAO
         private SqlConnection cnn;
         public PalestraDAO()
         {
-            cnn = DBConection.cnn;   
+          
         }
 
-        /*Implementar*/
-        public void inserePalestra(Palestra palestra)
+        public void inserePalestra(List<Palestra> palestras)
         {
-            int valido;
-            if (palestra.valido)
+           
+           
+            for (int i = 0; i < palestras.Count; i++)
             {
-                valido = 1;
-            }
-            else
-            {
-                valido = 0;
-            }
-            string query = "INSERT INTO dbo.palestras (ID, nome, descricao, imagemLink, valido, dataModificacao, dataInicio, duracao, local, palestrantes) ";
-            query = query + "VALUES ('" + palestra.id + "','" + palestra.nome + "','" + palestra.descricao + "','" + palestra.imagemLink + "','" + valido + "','" + palestra.dataModificacao + "','" + palestra.dataInicio + "','" + palestra.duracao + "','";
-            query = query + palestra.local + "','" + palestra.getPalestrantes().ElementAt(0) + "')";
+                DBConection.dummyConnection();
+                this.cnn = DBConection.cnn;
+                int valido;
+                if (palestras.ElementAt(i).valido)
+                {
+                    valido = 1;
+                }
+                else
+                {
+                    valido = 0;
+                }
+                string query = "INSERT INTO dbo.palestras (ID, nome, descricao, imagemLink, valido, dataModificacao, dataInicio, duracao, local, palestrantes) ";
+                query = query + "VALUES ('" + palestras.ElementAt(i).id + "','" + palestras.ElementAt(i).nome + "','" + palestras.ElementAt(i).descricao + "','" + palestras.ElementAt(i).imagemLink + "','" + valido + "','" + palestras.ElementAt(i).dataModificacao + "','" + palestras.ElementAt(i).dataInicio + "','" + palestras.ElementAt(i).duracao + "','";
+                query = query + palestras.ElementAt(i).local + "','" + palestras.ElementAt(i).getPalestrantes().ElementAt(0) + "')";
 
-            SqlCommand cmd = new SqlCommand(query, cnn);
-            cmd.BeginExecuteNonQuery();
-            
+                SqlCommand cmd = new SqlCommand(query, cnn);
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                }
+               
+                this.cnn.Close();
+            }
+
+            Console.WriteLine("\n\nServidor atualizado com sucesso!");
 
         }
+
     }
 }

@@ -13,9 +13,9 @@ namespace ServerPushAPP
     {
         public static void doSync(String response)
         {
-            Palestra palestra = JsonResponse.parsePalestra(response);
+            List<Palestra> palestras = JsonResponse.parsePalestra(response);
             PalestraDAO palestraDAO = new PalestraDAO();
-            palestraDAO.inserePalestra(palestra);
+            palestraDAO.inserePalestra(palestras);
         }
 
     }

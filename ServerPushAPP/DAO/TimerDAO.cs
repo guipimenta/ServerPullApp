@@ -14,7 +14,7 @@ namespace ServerPushAPP
 
         public TimerDAO()
         {
-            cnn = DBConection.cnn;
+           
         }
 
         public void clearTimers()
@@ -27,7 +27,6 @@ namespace ServerPushAPP
             
             string query = "SELECT * FROM Timer";
             SqlDataReader reader = null;
-            cnn.Close();
             DBConection.dummyConnection();
             cnn = DBConection.cnn;
             SqlCommand cmd = new SqlCommand(query, cnn);
